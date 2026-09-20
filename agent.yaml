@@ -1,0 +1,6 @@
+spec_version: "0.1.0"
+name: clima-carbon-accounting
+version: "0.1.0"
+description: "Automated GHG Protocol compliance agent calculating Scope 1, 2, and 3 emission factors, supply chain carbon intensity, and SEC climate disclosure reports."
+model:
+  preferred: llama-3.3-70b-versatile

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "calculate-scope-emissions",
+  "description": "Convert fuel consumption, utility kWh, and refrigerant losses into metric tons of CO2 equivalent.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "fuel_type": {
+        "type": "string"
+      },
+      "consumption_quantity": {
+        "type": "number"
+      },
+      "unit": {
+        "type": "string"
+      },
+      "facility_region": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "fuel_type",
+      "consumption_quantity",
+      "unit"
+    ]
+  }
+}
