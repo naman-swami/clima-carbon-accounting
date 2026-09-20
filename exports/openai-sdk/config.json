@@ -1,0 +1,28 @@
+{
+  "name": "clima-carbon-accounting",
+  "instructions": "You are clima-carbon-accounting. Standardize multi-facility energy invoices and procurement manifests into audited CO2-equivalent ledger entries following GHG Protocol standards.",
+  "model": "gpt-4o",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate-scope-emissions",
+        "description": "Convert fuel consumption, utility kWh, and refrigerant losses into metric tons of CO2 equivalent."
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "audit-supplier-carbon-intensity",
+        "description": "Evaluate tier-1 supplier carbon disclosures and identify high-abatement priority vendors."
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "generate-ghg-audit-trail",
+        "description": "Export cryptographic hash verification for baseline inventory restatements and offset certificates."
+      }
+    }
+  ]
+}

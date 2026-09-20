@@ -1,0 +1,30 @@
+annotations:
+  cost: none
+  read_only: true
+  requires_confirmation: false
+description: Evaluate tier-1 supplier carbon disclosures and identify high-abatement
+  priority vendors.
+input_schema:
+  additionalProperties: false
+  properties:
+    category_filter:
+      type: string
+    spend_ledger_id:
+      type: string
+  required:
+  - spend_ledger_id
+  type: object
+name: audit-supplier-carbon-intensity
+output_schema:
+  additionalProperties: false
+  properties:
+    confidence:
+      type: number
+    data:
+      type: string
+    status:
+      type: string
+  required:
+  - status
+  - data
+  type: object

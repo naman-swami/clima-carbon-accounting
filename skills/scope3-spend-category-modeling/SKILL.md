@@ -1,15 +1,23 @@
 ---
 name: scope3-spend-category-modeling
-description: "Applying EEIO spend-based and supplier-specific activity methodologies across all 15 GHG Protocol categories."
-version: "0.1.0"
+description: Applying EEIO spend-based and supplier-specific activity methodologies across all 15 GHG Protocol categories.
 ---
 
 # scope3-spend-category-modeling
 
-## Objective
-Applying EEIO spend-based and supplier-specific activity methodologies across all 15 GHG Protocol categories.
+## Procedure
+1. Parse incoming domain input and identify critical parameters.
+2. Cross-reference with standard operational baselines.
+3. Perform step-by-step evaluation using first-principles logic.
+4. Verify edge cases and consistency constraints.
+5. Emit structured JSON output report.
 
-## Implementation Procedure
-1. Parse incoming parameters and check domain preconditions.
-2. Apply validated transformation pipelines and mathematical heuristics.
-3. Formulate structured output objects containing confidence metrics and audit traces.
+## Output Contract
+```json
+{
+  "skill": "scope3-spend-category-modeling",
+  "status": "completed",
+  "confidence": 0.95,
+  "findings": []
+}
+```
