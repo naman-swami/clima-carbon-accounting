@@ -1,0 +1,10 @@
+factors:
+  scope_1:
+    diesel_fuel_kg_co2e_per_liter: 2.68
+    natural_gas_kg_co2e_per_kwh: 0.185
+  scope_2:
+    us_grid_average_kg_co2e_per_kwh: 0.385
+    eu_grid_average_kg_co2e_per_kwh: 0.220
+  scope_3:
+    commercial_flight_short_haul_kg_co2e_per_pax_km: 0.255
+    commercial_flight_long_haul_kg_co2e_per_pax_km: 0.150

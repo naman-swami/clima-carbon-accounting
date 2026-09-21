@@ -1,0 +1,15 @@
+{
+  "company_name": "Novalis Industrial Corp",
+  "reporting_year": 2025,
+  "scope_1_activities": {
+    "diesel_liters": 15000.0,
+    "natural_gas_kwh": 120000.0
+  },
+  "scope_2_activities": {
+    "purchased_electricity_kwh": 350000.0,
+    "grid_region": "US"
+  },
+  "scope_3_activities": {
+    "business_flight_passenger_km": 85000.0
+  }
+}
