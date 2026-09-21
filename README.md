@@ -57,7 +57,7 @@ clima-carbon-accounting/
 │   └── ipcc_tier_methodology.md     # GHG protocol standard reference
 ├── tests/
 │   └── test_agent.py                # Carbon calculation test suite
-├── main.py                          # Carbon accounting CLI
+├── account.py                          # Carbon accounting CLI
 └── requirements.txt
 ```
 
@@ -68,5 +68,5 @@ clima-carbon-accounting/
 pytest tests/ -v
 
 # Audit benchmark corporate activity
-python main.py --demo
+python account.py --demo
 ```
