@@ -1,72 +1,49 @@
 # Clima Corporate Carbon Accounting Engine
 
-[![OpenGAP](https://img.shields.io/badge/OpenGAP-0.1.0-blue.svg)](agent.yaml)
-[![ESG](https://img.shields.io/badge/Domain-Carbon_Accounting_GHG-darkgreen.svg)](docs/ipcc_tier_methodology.md)
-[![Protocol](https://img.shields.io/badge/Standard-GHG_Protocol_Corporate-teal.svg)](docs/ipcc_tier_methodology.md)
-[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](requirements.txt)
-[![CI](https://img.shields.io/badge/CI-Passing-brightgreen.svg)](.github/workflows/ci.yml)
+> **GHG Protocol & ISO 14064-1 Compliant Multi-Scope Emissions Ledger**  
+> Quantifying Scope 1 (Direct), Scope 2 (Grid Electricity), and Scope 3 (Supply Chain) Footprints.
 
-An enterprise greenhouse gas accounting engine computing Scope 1, Scope 2, and Scope 3 carbon inventories in metric tons $\text{CO}_2\text{e}$ conforming to the GHG Protocol Corporate Standard.
+---
 
-```
-                    ┌─────────────────────────┐
-                    │ Corporate Activity Data │
-                    │ (Diesel, KWh, Flights)  │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │ calculators/emissions   │
-                    └────────────┬────────────┘
-                                 │
-                 ┌───────────────┴───────────────┐
-                 ▼                               ▼
-      ┌─────────────────────┐         ┌─────────────────────┐
-      │  Scope 1 & Scope 2  │         │  Scope 3 Upstream   │
-      │  (Direct & Utility) │         │   (Business Travel) │
-      └──────────┬──────────┘         └──────────┬──────────┘
-                 │                               │
-                 └───────────────┬───────────────┘
-                                 ▼
-                    ┌─────────────────────────┐
-                    │ CSRD / SEC ESG Report   │
-                    │ Total Metric Tons CO2e  │
-                    └─────────────────────────┘
-```
+### GHG Protocol Calculation Standards
 
-## Features
+Emissions calculations adhere to IPCC Sixth Assessment Report (AR6) Global Warming Potentials ($GWP_{100}$):
 
-- **Multi-Scope Carbon Inventory**: Computes Scope 1 stationary/mobile, Scope 2 regional grid emissions, and Scope 3 flight mileage.
-- **IPCC Tier 1 Emission Factors**: Incorporates standard EPA and European Environment Agency emission constants.
-- **Corporate Activity Benchmark**: Comes pre-packaged with industrial corporate utility and flight activity fixtures.
+$$E = \sum_{i} \left( A_i \times EF_i \times \frac{GWP_i}{1000} \right) \quad [\text{Metric Tonnes } CO_2e]$$
+Where $A_i$ represents activity volume (liters fuel, MWh power, passenger-km), and $EF_i$ represents the emission factor.
 
-## Directory Structure
+---
+
+### Scope Breakdown & Verified Emission Factors
 
 ```
-clima-carbon-accounting/
-├── agent.yaml                       # OpenGAP 0.1.0 Manifest
-├── EXPLAINABILITY.md                # 7-checkpoint ESG carbon provenance
-├── calculators/
-│   └── emissions_engine.py          # Scope 1, 2, and 3 accounting engine
-├── standards/
-│   └── ghg_protocol_factors.yaml    # EPA / IPCC emission factors
-├── fixtures/
-│   └── esg_data/
-│       └── corporate_activity_data.json # Benchmark corporate activity data
-├── docs/
-│   └── ipcc_tier_methodology.md     # GHG protocol standard reference
-├── tests/
-│   └── test_agent.py                # Carbon calculation test suite
-├── account.py                          # Carbon accounting CLI
-└── requirements.txt
+                           Enterprise Activity
+                                   │
+         ┌─────────────────────────┼─────────────────────────┐
+         ▼                         ▼                         ▼
+   [SCOPE 1: Direct]      [SCOPE 2: Electricity]     [SCOPE 3: Upstream]
+   Stationary Fuel        US Grid: 0.386 t/MWh       Air Travel (Long-haul):
+   Natural Gas:           EU Grid: 0.215 t/MWh       0.102 kg CO2e / p-km
+   2.02 kg CO2e / m³
 ```
 
-## Quick Start
+| Scope Classification | Activity Source | Default Factor ($EF$) | Reporting Unit |
+| :--- | :--- | :--- | :--- |
+| **Scope 1** | Diesel Fleet Combustion | $2.68$ | $\text{kg } CO_2e / \text{liter}$ |
+| **Scope 1** | Natural Gas Boilers | $2.02$ | $\text{kg } CO_2e / \text{m}^3$ |
+| **Scope 2** | Substation Power (US Avg) | $386.0$ | $\text{kg } CO_2e / \text{MWh}$ |
+| **Scope 3** | Commercial Aviation | $0.102$ | $\text{kg } CO_2e / \text{passenger-km}$ |
+
+---
+
+### Running the Carbon Accounting Ledger
 
 ```bash
-# Run carbon calculation tests
-pytest tests/ -v
-
-# Audit benchmark corporate activity
+# Calculate corporate emissions ledger for benchmark fiscal quarter
 python account.py --demo
+
+# Execute ISO assurance test suite
+pytest tests/ -v
 ```
+
+Activity payloads, audit assurance methodology, and IPCC emission factor lookups are configured in [GHG_METHODOLOGY.md](GHG_METHODOLOGY.md) and `standards/ghg_protocol_factors.yaml`.
